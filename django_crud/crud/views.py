@@ -11,7 +11,7 @@ def index(request):
 
 
 def get_data(request):
-    path = os.path.join(settings.BASE_DIR, "django_crud/data/stock_market_data.json")
+    path = os.path.join(settings.BASE_DIR, "crud/data/stock_market_data.json")
     with open(path) as f:
         data = json.load(f)
     return JsonResponse(data, safe=False)
