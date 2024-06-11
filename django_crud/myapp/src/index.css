@@ -1,0 +1,45 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header {
+  background-color: #2C3333;
+  color: #A5C9CA;
+  padding: 50px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  padding: 50px 30px;
+  flex: 1;
+}
+
+footer {
+  background-color: #2C3333;
+  color: #A5C9CA;
+  padding: 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.bottom {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.fa-github {
+  color: #A5C9CA;
+  font-size: 24px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.fa-github:hover {
+  transform: rotate(360deg) scale(1.2);
+}
