@@ -11,4 +11,9 @@
   overflow-x: scroll;
   margin: auto;
   display: flex;
+  gap: 2px;
+}
+
+.input-group-text {
+  width: 40%;
 }

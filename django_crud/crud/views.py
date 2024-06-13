@@ -57,6 +57,10 @@ def delete_data(request, id):
 
 
 def update_data(request, id):
-    if request.method == "PUT":
-        print(f"Update {id}")
+    if request.method == "POST":
+        data = json.loads(request.body)
+        item = get_object_or_404(StockTrade, id=id)
+        for key, value in data.items():
+            setattr(item, key, value)
+        item.save()
         return HttpResponse(status=204)
