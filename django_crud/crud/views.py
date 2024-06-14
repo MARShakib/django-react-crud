@@ -51,16 +51,35 @@ def get_data(request):
 
 def delete_data(request, id):
     if request.method == "DELETE":
-        item = get_object_or_404(StockTrade, id=id)
-        item.delete()
-        return HttpResponse(status=204)
+        try:
+            item = get_object_or_404(StockTrade, id=id)
+            item.delete()
+            response = {"message": f"Item Deleted successfully. Item id: {id}"}
+            return JsonResponse(response, status=200)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)
 
 
 def update_data(request, id):
     if request.method == "POST":
-        data = json.loads(request.body)
-        item = get_object_or_404(StockTrade, id=id)
-        for key, value in data.items():
-            setattr(item, key, value)
-        item.save()
-        return HttpResponse(status=204)
+        try:
+            data = json.loads(request.body)
+            item = get_object_or_404(StockTrade, id=id)
+            for key, value in data.items():
+                setattr(item, key, value)
+            item.save()
+            response = {"message": f"Item Updated successfully. Item id: {id}"}
+            return JsonResponse(response, status=200)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)
+
+
+def add_data(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            item = StockTrade.objects.create(**data)
+            response = {"message": f"Item added successfully. Item id: {item.id}"}
+            return JsonResponse(response, status=200)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)

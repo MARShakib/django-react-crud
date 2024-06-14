@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import React from "react";
 import { getCookie } from "../csrf";
 
-const UpdateModal = ({ updateId, rowData = {}, loadPage, updateMessage, updateErrorMessage }) => {
+const AddModal = ({ loadPage, updateMessage, updateErrorMessage }) => {
     const [formData, setFormData] = useState({
         date: '',
         trade_code: '',
@@ -12,20 +12,6 @@ const UpdateModal = ({ updateId, rowData = {}, loadPage, updateMessage, updateEr
         close: '',
         volume: '',
     });
-
-    useEffect(() => {
-        if (rowData) {
-            setFormData({
-                date: rowData.date || ' ',
-                trade_code: rowData.trade_code || ' ',
-                high: rowData.high || ' ',
-                low: rowData.low || ' ',
-                open: rowData.open || ' ',
-                close: rowData.close || ' ',
-                volume: rowData.volume || ' ',
-            });
-        }
-    }, [rowData]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -37,7 +23,7 @@ const UpdateModal = ({ updateId, rowData = {}, loadPage, updateMessage, updateEr
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        fetch(`/update_data/${updateId}`, {
+        fetch(`/add_data/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,12 +50,12 @@ const UpdateModal = ({ updateId, rowData = {}, loadPage, updateMessage, updateEr
         loadPage()
     };
     return (
-        <div className="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false"
+        <div className="modal fade" id="staticBackdropAdd" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h1 className="modal-title fs-5" id="staticBackdropLabel">Update Id: {updateId}</h1>
+                        <h1 className="modal-title fs-5" id="staticBackdropLabel">Add Item</h1>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form className="row g-3" onSubmit={handleSubmit}>
@@ -107,7 +93,7 @@ const UpdateModal = ({ updateId, rowData = {}, loadPage, updateMessage, updateEr
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Update</button>
+                            <button type="submit" className="btn btn-success" data-bs-dismiss="modal">Add</button>
                         </div>
                     </form>
                 </div>
@@ -116,4 +102,4 @@ const UpdateModal = ({ updateId, rowData = {}, loadPage, updateMessage, updateEr
     );
 }
 
-export default UpdateModal;
+export default AddModal;

@@ -25,7 +25,7 @@ const DataTable = ({ data, handleDelete, handleUpdateId }) => {
                         </td>
                         <td>
                             <button onClick={() => handleUpdateId(item.id)} className="btn btn-outline-info"
-                                data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Update</button>
+                                data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate" >Update</button>
                         </td>
                     </tr>
                 ))}

@@ -14,6 +14,28 @@
   gap: 2px;
 }
 
+.hrDivider {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .input-group-text {
   width: 40%;
+}
+
+.addBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.successMessage {
+  text-align: center;
+  color: #059212;
+}
+
+.errorMessage {
+  text-align: center;
+  color: #C80036;
 }
