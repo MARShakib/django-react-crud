@@ -4,6 +4,7 @@ import DataTable from './components/DataTable';
 import UpdateModal from './components/UpdateModal';
 import './App.css';
 import AddModal from './components/AddModal';
+import ChartComponent from './components/ChartComponent';
 
 function App() {
   const [data, setData] = useState([]);
@@ -79,6 +80,9 @@ function App() {
       <div className='errorMessage'>{error}</div>
       <div className='addBtn'>
         <button className="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdropAdd" >Add Item</button>
+      </div>
+      <div className='charts'>
+        <ChartComponent />
       </div>
       <div>
         <UpdateModal updateId={updateId} rowData={data.find(item => item.id === updateId)}

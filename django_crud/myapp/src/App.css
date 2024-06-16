@@ -30,6 +30,13 @@
   align-items: center;
 }
 
+.charts {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
 .successMessage {
   text-align: center;
   color: #059212;
