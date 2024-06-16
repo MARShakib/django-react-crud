@@ -8,6 +8,7 @@ import ChartComponent from './components/ChartComponent';
 
 function App() {
   const [data, setData] = useState([]);
+  const [chartData, setChartData] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [updateId, setUpdateId] = useState(0);
@@ -26,6 +27,22 @@ function App() {
   useEffect(() => {
     loadPage()
   }, [page]);
+
+  const handleLoadChart = () => {
+    fetch('/generate_chart')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch chart data');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setChartData(data.chart_data);
+      })
+      .catch(error => {
+        console.error('Error fetching chart data:', error);
+      });
+  };
 
   const handleDelete = (id) => {
     fetch(`/delete_data/${id}`, {
@@ -80,9 +97,10 @@ function App() {
       <div className='errorMessage'>{error}</div>
       <div className='addBtn'>
         <button className="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdropAdd" >Add Item</button>
+        <button className="btn btn-primary btn-lg" onClick={handleLoadChart}>Load Chart</button>
       </div>
       <div className='charts'>
-        <ChartComponent />
+        <ChartComponent chartData={chartData} />
       </div>
       <div>
         <UpdateModal updateId={updateId} rowData={data.find(item => item.id === updateId)}
